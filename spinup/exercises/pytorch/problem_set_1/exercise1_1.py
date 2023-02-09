@@ -1,5 +1,6 @@
 import torch
 import numpy as np
+import math
 
 """
 
@@ -24,11 +25,9 @@ def gaussian_likelihood(x, mu, log_std):
         Tensor with shape [batch]
     """
     #######################
-    #                     #
-    #   YOUR CODE HERE    #
-    #                     #
+    log_probs = - 0.5 * torch.sum((x - mu)**2 / torch.exp(2 * log_std) + 2 * log_std , dim=1) + torch.shape(x)[1] * torch.log(2 * math.pi)
     #######################
-    return torch.zeros(1)
+    return log_probs
 
 
 if __name__ == '__main__':
